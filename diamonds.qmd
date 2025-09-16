@@ -1,0 +1,30 @@
+---
+title: "Diamonds Ex"
+format: html
+---
+
+```{r setup}
+#| include: false
+#| message: false
+library("tidyverse")
+library("ggdensity")
+```
+
+```{r}
+#| fig-height: 20
+#| fig-width: 8
+ggplot(diamonds, aes(x = carat, y = price)) + 
+  geom_hdr_points() +
+  facet_wrap(vars(clarity), ncol = 1) +
+  theme_bw() +
+  scale_y_continuous(transform = scales::transform_log10()) +
+  labs(
+    title = "Diamond Prices by Clarity Ratings",
+    subtitle = str_glue("Rendered on {Sys.time()}"),
+    x = "Size (carat)",
+    y = "Price ($)",
+    color = NULL
+  )
+```
+
+
