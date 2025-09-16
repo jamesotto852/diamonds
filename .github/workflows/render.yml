@@ -2,6 +2,9 @@ name: Render
 
 on:
   push:
+    # Maybe we don't want to render if not pushing on main
+    # Commented out so that always render, just don't publish if on other branch
+    # branches: main
 
 jobs:
   render:
@@ -24,11 +27,12 @@ jobs:
         uses: quarto-dev/quarto-actions/install-quarto@v1
 
       - name: Render quarto document
-        run: quarto render index.qmd --output-dir docs
+        run: quarto render index.qmd --output-dir html
 
       - name: Publish to GitHub Pages
-        if: github.event_name != 'pull request'
+        # only publish if pushed to main (production environment)
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
-          folder: docs
+          folder: html
