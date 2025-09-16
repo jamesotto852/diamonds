@@ -24,7 +24,7 @@ jobs:
         uses: quarto-dev/quarto-actions/install-quarto@v1
 
       - name: Render quarto document
-        run: quarto render diamonds.qmd --output-dir docs
+        run: quarto render index.qmd --output-dir docs
 
       - name: Publish to GitHub Pages
         if: github.event_name != 'pull request'

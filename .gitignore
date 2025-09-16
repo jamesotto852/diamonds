@@ -3,5 +3,7 @@
 .RData
 .Ruserdata
 
-diamonds_files/
-diamonds.html
+index_files/
+index.html
+
+/.quarto/
